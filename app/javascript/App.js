@@ -2,7 +2,7 @@ import React from 'react'
 import API from './api/RailsAuth'
 
 import SignIn from './components/auth/SignIn'
-// import Menu from './components/ui/Menu'
+import Menu from './components/ui/Menu'
 
 import { load_google_maps, styles } from './api/GoogleMaps'
 
@@ -117,7 +117,7 @@ class App extends React.Component {
         { user ? (
           <React.Fragment>
             <div id="map"></div>
-            {/* <Menu map={map} gMaps={googleMaps} signout={this.signOut}/> */}
+            <Menu map={map} gMaps={googleMaps} signout={this.signOut}/>
           </React.Fragment>
         ) : (
           <SignIn signin={this.signIn}/>
