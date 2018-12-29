@@ -1,0 +1,296 @@
+* {
+	margin: 0;
+	padding: 0;
+	word-wrap: break-word;
+	/* -webkit-appearance: none;
+	-moz-appearance: none; */
+}
+html, body {
+	text-rendering: optimizeLegibility;
+	-webkit-text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  background-color: #004e92;
+  background: -webkit-linear-gradient(top,#004e92,#1b2687);
+  background: -o-linear-gradient(top,#004e92,#1b2687);
+  background: linear-gradient(180deg,#004e92,#1b2687);
+  /* font-family: Roboto, lato, Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif; */
+  font-family: 'Raleway', sans-serif !important;
+}
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+img {
+	border: 0px;
+	max-width: 100%;
+	height: auto /*!important*/;
+}
+h1, h2, h3, h4, h5, h6, form, p {
+	margin: 0px;
+	word-wrap: break-word;
+}
+a {
+	color: #3D52B0;
+	text-decoration: none;
+}
+a:hover {
+	cursor: pointer;
+	/*text-shadow: 2px 2px 2px #000;
+	text-shadow: 2px 2px 2px rgba(0,0,0,0.6);*/
+}
+.img_cover {
+	position: absolute;
+  max-height: 125%;
+  max-width: 125%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+ul {
+  list-style: none;
+}
+
+.App {
+  /* display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center; */
+  height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  position: relative;
+}
+
+#map {
+  height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+
+/* menus */
+.menu {
+  background-color: #3D52B0;
+  
+  overflow: hidden;
+  position: absolute;
+  bottom: 20px; 
+  right: 20px;
+  width: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+  padding-bottom: 50px;
+  transition: 0.5s;
+
+  z-index: 20;
+}
+.menu.open {
+  width: 280px;
+  padding-top: 40px;
+  padding-bottom: 70px;
+  min-height: 170px;
+  max-height: 270px;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.menu .toggle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: #3D52B0;
+  color: #FFF;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+.menu .toggle:before {
+  content: '\f142';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 50px;
+  transition: 0.2s;
+}
+.menu .centerSelf {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 50%;
+}
+.menu ul.options {
+  text-align: center;
+  transform: scale(0);
+}
+.menu .menu-item {
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #3D52B0;
+  margin: 0 50px;
+}
+.menu.open ul.options {
+  z-index: 2;
+  transform: scale(1);
+  transition: 0.3s;
+  transition-delay: 0.2s;
+
+  color: #000000;
+}
+.overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+.overlay.open {
+  opacity: 1;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.4);
+  transition: opacity 0.5s ease-out;
+}
+
+/* forms  */
+form {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  background-color: #FFF;
+}
+.input_holder {
+  display: block;
+  margin-bottom: 10px;
+}
+.input_holder label {
+  display: block;
+  color: #3D52B0;
+  font-weight: 700;
+}
+.input_holder label span {
+  color: #777;
+  font-size: 11px;
+  font-weight: 400;
+}
+.input_holder input {
+  width: 100%;
+  max-width: 300px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid #3D52B0;
+  font-size: 16px;
+}
+.input_holder button {
+  border-radius: 4px;
+}
+.form_inner {
+  transform: scale(0);
+}
+.open .form_inner {
+  transform: scale(1);
+  transition: 0.3s;
+  transition-delay: 0.2s;
+}
+
+
+
+form .change-form-button {
+  color: #3D52B0;
+  text-decoration: underline;
+}
+form.sign-in-form, form.sign-up-form {
+  position: fixed;
+  top: 20%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 30px;
+  max-width: 300px;
+  border-radius: 4px;
+  text-align: center;
+}
+form.sign-in-form h1, form.sign-up-form h1 {
+  padding-bottom: 20px;
+}
+form.sign-in-form p, form.sign-up-form p {
+  padding-top: 10px;
+}
+form.sign-up-form {
+  top: 5%;
+}
+form.sign-in-form input, form.sign-up-form input {
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+form.sign-in-form button, 
+form.sign-up-form button {
+  background-color: #3D52B0;
+  color: #FFF;
+  text-transform: uppercase;
+  outline: 0;
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+
+.close-menu {
+  transform: scale(0);
+  z-index: 30;
+}
+.open .close-menu {
+  display: inline-block;
+  position: absolute;
+  transform: scale(1);
+  transition: 0.3s;
+  transition-delay: 0.2s;
+  top: 5px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #3D52B0;
+  color: #FFF;
+}
+
+#infowindow-content {
+  display: none;
+}
+#map #infowindow-content {
+  display: inline;
+  border-radius: 10px;
+}
+
+
