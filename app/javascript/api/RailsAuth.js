@@ -1,15 +1,19 @@
 class API {
   static signin (user) {
+    const csrfToken = document.querySelector('[name="csrf-token"]').content
+    console.log(csrfToken)
     return fetch('/api/v1/signin', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken},
       body: JSON.stringify(user)
     }).then(resp => resp.json())
   }
   static signup (user) {
+    const csrfToken = document.querySelector('[name="csrf-token"]').content
+    console.log(csrfToken)
     return fetch('/api/v1/signup', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken},
       body: JSON.stringify(user)
     }).then(resp => resp.json())
   }
