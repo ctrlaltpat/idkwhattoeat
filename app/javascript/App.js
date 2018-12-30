@@ -5,6 +5,7 @@ import SignIn from './components/auth/SignIn'
 import Menu from './components/ui/Menu'
 
 import { load_google_maps, styles } from './api/GoogleMaps'
+import Loading from './components/ui/Loading';
 
 class App extends React.Component {
   state={
@@ -15,9 +16,11 @@ class App extends React.Component {
     },
     map: null,
     googleMaps: null,
+    loading: true
   }
   signIn = user => {
     localStorage.setItem('token', user.token)
+    this.isLoading()
     this.setState({
       user: {
         id: user.id,
@@ -90,14 +93,15 @@ class App extends React.Component {
           lat: this.state.userLocation.lat, 
           lng: this.state.userLocation.lng
         })
-
         this.setState({
           map: map,
           googleMaps: googleMaps
-        })
+        }, this.doneLoading)
       })
     })
   }
+  isLoading = () => this.setState({loading: true})
+  doneLoading = () => this.setState({loading: false})
   componentDidMount(){
     API.validate()
       .then(data => {
@@ -110,18 +114,31 @@ class App extends React.Component {
     this.state.user && this.loadMap()
   }
   render () {
-    const { user, map, googleMaps } = this.state
+    const { user, userLocation, map, googleMaps, loading } = this.state
 
     return (
       <div className={`App ${user ? "userSignedIn" : '' }`}>
         { user ? (
           <React.Fragment>
             <div id="map"></div>
-            <Menu map={map} gMaps={googleMaps} signout={this.signOut}/>
+            <Menu 
+              map={map}
+              user={user}
+              userLocation={userLocation}
+              gMaps={googleMaps}
+              isLoading={this.isLoading}
+              doneLoading={this.doneLoading}
+              signout={this.signOut}
+            />
           </React.Fragment>
         ) : (
-          <SignIn signin={this.signIn}/>
+          <SignIn 
+            signin={this.signIn}
+            isLoading={this.isLoading}
+            doneLoading={this.doneLoading}
+          />
         )}
+        <Loading show={loading}/>
       </div>
     )
   }

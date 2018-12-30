@@ -18,7 +18,6 @@ class SignIn extends React.Component {
     e.preventDefault();
     const { signin } = this.props
     const user = this.state.user
-    // console.log(user)
     this.state.signInForm ? 
       API.signin({username: user.username, password: user.password})
         .then(data => {
@@ -45,12 +44,17 @@ class SignIn extends React.Component {
     })
   }
 
-  handleChange = event =>
+  handleChange = event => {
     this.setState({ 
       user: {
         ...this.state.user,
         [event.target.name]: event.target.value } 
     })
+  }
+
+  componentDidMount(){
+    this.props.doneLoading()
+  }
 
   render () {
     const { username, password, firstname, lastname, email } = this.state.user
@@ -71,7 +75,7 @@ class SignIn extends React.Component {
               <input type="password" id="password" name="password" placeholder="Password*" onChange={handleChange} value={password}/>
             </div>
             <div className="input_holder">
-              <button type="submit">Sign In</button>
+              <button className="btn--ripple wh" type="submit">Sign In</button>
             </div>
             <p className="message">Not registered? <span className="change-form-button" onClick={changeForm}>Sign up.</span></p>
           </form>
@@ -94,7 +98,7 @@ class SignIn extends React.Component {
               <input type="password" id="password" name="password" placeholder="Password*" onChange={handleChange} value={password}/>
             </div>
             <div className="input_holder">
-              <button type="submit">Sign Up</button>
+              <button className="btn--ripple wh" type="submit">Sign Up</button>
             </div>
             <p className="message">Already registered? <span className="change-form-button" onClick={changeForm}>Sign in.</span></p>
           </form>

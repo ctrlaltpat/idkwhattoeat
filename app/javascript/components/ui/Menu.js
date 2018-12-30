@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import GetRandom from './GetRandom'
 // import gimme a choice .... need to change this name tho
 // should i still inlcude setting date and time??
 // import history
@@ -8,7 +9,7 @@ import React, { Component } from 'react'
 class Menu extends Component {
   state={
     isOpen: false,
-    create: false,
+    random: false,
   }
   handleClick = (context) => {
     switch (context) {
@@ -19,8 +20,8 @@ class Menu extends Component {
           }
         })
         break;
-      case 'create':
-        this.setState({create: !this.state.create})
+      case 'random':
+        this.setState({random: !this.state.random, isOpen: false})
         break;
       case 'X-X':
         this.closeMenu()
@@ -32,24 +33,40 @@ class Menu extends Component {
   closeMenu = () => {
     this.setState({
       isOpen: false,
-      create: false,
+      random: false,
     })
   }
+  componentDidMount(){
+    this.props.doneLoading()
+  }
   render() {
-    const { isOpen, create } = this.state;
+    const { isOpen, random } = this.state;
+    const { map, gMaps, user, userLocation, signout } = this.props
     return (
       <React.Fragment>
         {/* <div className={`overlay ${ isOpen ? "open": ""}`}></div> */}
         <div className={`menu ${isOpen ? "open" : ""} `}>
-          <div className="close-menu" onClick={() => this.closeMenu()}>x</div>
+          <div className="close-menu btn--ripple wh" onClick={() => this.closeMenu()}>x</div>
           <ul className="options">
-            <li className="menu-item" onClick={()=> this.handleClick('create')}>Gimme a choice</li>
-            <li className="menu-item">View History</li>
-            <li className="menu-item">Settings</li>
-            <li className="menu-item" onClick={this.props.signout}>Sign Out</li>
+            <li className="menu-item btn--ripple" onClick={()=> this.handleClick('random')}>Gimme a choice</li>
+            <li className="menu-item btn--ripple">View History</li>
+            <li className="menu-item btn--ripple">Settings</li>
+            <li className="menu-item btn--ripple" onClick={signout}>Sign Out</li>
           </ul>
-          <div className="toggle" onClick={() => this.handleClick('main')}></div>
+          <div className="toggle btn--ripple wh" onClick={() => this.handleClick('main')}></div>
         </div>
+        {
+          gMaps 
+            && 
+              <GetRandom 
+                _open={random} 
+                user={user}
+                userLocation={userLocation}
+                map={map} 
+                gMaps={gMaps} 
+                toggle={this.handleClick} 
+              />
+        }
       </React.Fragment>
     )
   }
