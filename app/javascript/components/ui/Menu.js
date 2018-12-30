@@ -64,7 +64,9 @@ class Menu extends Component {
                 userLocation={userLocation}
                 map={map} 
                 gMaps={gMaps} 
-                toggle={this.handleClick} 
+                toggle={this.handleClick}
+                isLoading={this.props.isLoading}
+                doneLoading={this.props.doneLoading}
               />
         }
       </React.Fragment>

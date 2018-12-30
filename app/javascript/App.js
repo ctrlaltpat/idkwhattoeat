@@ -85,7 +85,7 @@ class App extends React.Component {
             position: googleMaps.ControlPosition.LEFT_BOTTOM
         },
         fullscreenControl: false,
-        // styles: styles
+        styles: styles
       })
     }).then(() => {
       this.getUserLocation().then(() =>{

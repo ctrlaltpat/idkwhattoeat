@@ -183,11 +183,11 @@ ul {
   width: 280px;
   height: auto;
   z-index: 20;
-  padding: 20px;
+  padding: 20px 20px 50px;
   overflow: hidden;
-
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   background-color: #FFF;
-  border-radius: 20px;
+  border-radius: 10px;
   transform: scale(0);
   transition: 0.5s;
 }
@@ -291,6 +291,7 @@ form.sign-up-form button,
   transform: scale(0);
   z-index: 30;
   font-size: 0;
+  cursor: pointer;
 }
 .open .close-menu {
   display: inline-block;
@@ -310,6 +311,11 @@ form.sign-up-form button,
   background-color: #3D52B0;
   color: #FFF;
   font-size: 16px;
+}
+
+.get-random.open .close-menu {
+  top: auto;
+  bottom: 5px;
 }
 
 #infowindow-content {
@@ -406,6 +412,7 @@ form.sign-up-form button,
   animation: rotating 2s linear infinite;
 }
 .loading {
+  z-index: 40;
   position: absolute;
   top: 20%;
   left: 0;
