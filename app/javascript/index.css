@@ -14,10 +14,7 @@ html, body {
   background: -webkit-linear-gradient(top,#004e92,#1b2687);
   background: -o-linear-gradient(top,#004e92,#1b2687);
   background: linear-gradient(180deg,#004e92,#1b2687);
-  /* font-family: Roboto, lato, Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif; */
-  font-family: 'Raleway', sans-serif !important;
+  font-family: 'Raleway', 'Roboto', lato, Arial, sans-serif !important;
 }
 html {
 	box-sizing: border-box;
@@ -92,9 +89,10 @@ ul {
   border-radius: 50%;
   padding-bottom: 50px;
   transition: 0.5s;
-
+  animation: bounce 2s infinite 10s;
   z-index: 20;
 }
+
 .menu.open {
   width: 280px;
   padding-top: 40px;
@@ -104,6 +102,7 @@ ul {
   background-color: #FFFFFF;
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  animation: none;
 }
 
 .menu .toggle {
@@ -176,7 +175,7 @@ ul {
 
 .get-random {
   position: absolute;
-  top: 10%;
+  bottom: 10%;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -326,6 +325,44 @@ form.sign-up-form button,
   border-radius: 10px;
 }
 
+.place {
+  margin: 10px 0;
+  padding: 20px 5px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.place-name {
+  font-size: 20px;
+  padding: 5px;
+}
+.place-address {
+  font-size: 14px;
+  padding: 5px;
+}
+
+
+.rating {
+  color: #e7711b;
+}
+
+.rating-stars,
+.rating-stars span {
+  display: inline-block;
+  height: 13px;
+  text-align: left;
+}
+
+.rating-stars {
+  text-align: left;
+  width: 69px;
+  background-image:  url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAQAAAAz1Zf0AAAAWklEQVR4AY3O0QbDQBCG0UNYQi0hhBJqr8Iy7/94vewYlp65/Ay//4WlLnQLt3BbeIRH5jBFPVMHmlHS0CRnSqdiT3GH1edb8RGmoy4GwrBhM4Qmebn8XDrwBW7xChrojlOZAAAAAElFTkSuQmCC);
+}
+.rating-stars span {
+  height: 14px;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAYAAACZ3F9/AAAAcklEQVQoz2NgoDZ4Xij9nxxNASCNIJpUjQugGheQqvEBVOMDfIoSgPg9VCEh/B7F+UCOAhDvJ6AJJK+Ay/Z8HJryCfnNAIdGA0IaC3BonEBI4wakQIgH4vsEQxeqERYIAlC+AFKg4QwYByCuxyFXj56KAEHuodjGnEtTAAAAAElFTkSuQmCC);
+}
+
 
 @media screen and (max-width:1100px) {}
 
@@ -404,6 +441,20 @@ form.sign-up-form button,
     transform: rotateY(360deg);
   }
 }
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+	40% {
+    transform: translateY(-30px);
+  }
+	60% {
+    transform: translateY(-15px);
+  }
+}
+
+
 .loading-pin {
   -webkit-animation: rotating 2s linear infinite;
   -moz-animation: rotating 2s linear infinite;

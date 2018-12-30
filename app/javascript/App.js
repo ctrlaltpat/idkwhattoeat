@@ -76,11 +76,10 @@ class App extends React.Component {
           lng: -79.6010311
         },
         zoom: 15,
-        scaleControl: true,
+        scaleControl: false,
+        mapTypeControl: false,
         zoomControl: true,
-        streetViewControlOptions: {
-            position: googleMaps.ControlPosition.LEFT_CENTER
-        },
+        streetViewControl: false,
         zoomControlOptions: {
             position: googleMaps.ControlPosition.LEFT_BOTTOM
         },

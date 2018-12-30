@@ -10,6 +10,7 @@ class Menu extends Component {
   state={
     isOpen: false,
     random: false,
+    userFoundIt: false
   }
   handleClick = (context) => {
     switch (context) {
@@ -17,6 +18,9 @@ class Menu extends Component {
         this.setState({isOpen: !this.state.isOpen}, () => {
           if(!this.state.isOpen) {
             this.closeMenu()
+          }
+          if(!this.state.userFoundIt) {
+            this.setState({userFoundIt: true})
           }
         })
         break;

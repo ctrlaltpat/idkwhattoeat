@@ -45,6 +45,7 @@ export default class GetRandom extends Component {
         fields: ['name', 
                   'rating', 
                   'formatted_phone_number', 
+                  'formatted_address',
                   'geometry',
                   'icon',
                   'opening_hours',
@@ -76,15 +77,14 @@ export default class GetRandom extends Component {
       <React.Fragment>
         <div className={`overlay ${ _open ? "open": ""}`}></div>
         <div className={`get-random ${_open ? "open" : ""}`}>
-          <button 
-            type="submit" 
+          {random && <Place place={random} />}
+          <button
             className="btn--ripple wh"
             onClick={this.getNearby}
           >
             Get Random
           </button>
-          {random && <Place place={random} />}
-          <div className="close-menu btn--ripple wh">x</div>
+          <div className="close-menu btn--ripple wh" onClick={() => toggle('random')}>x</div>
         </div>
       </React.Fragment>
     )
