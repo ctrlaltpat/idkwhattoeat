@@ -108,7 +108,7 @@ export const styles = [
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#000000"
+        "color": "#1b2687"
       }
     ]
   },
