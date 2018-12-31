@@ -8,7 +8,6 @@ const computeStars = (rating) => {
   return starsWidth + 'px';
 }
 
-
 const Place = ({place}) => {
   const starStyle = {
     width: `${computeStars(place.rating)}`
@@ -16,7 +15,7 @@ const Place = ({place}) => {
   return (
     <div className="place">
       <div className="place-name">{place.name}</div>
-      <div className="rating">{place.rating}</div>
+      {/* <div className="rating">{place.rating}</div> */}
       <div className="rating-stars">
         <span style={starStyle}></span>
       </div>
@@ -24,7 +23,9 @@ const Place = ({place}) => {
       <a className="place-number" 
         href={`tel:${place.formatted_phone_number}`}
       > {place.formatted_phone_number}</a>
-      <PlaceImages />
+      <div className="place-images-container">
+        <PlaceImages images={place.photos}/>
+      </div>
     </div>
   )
 }

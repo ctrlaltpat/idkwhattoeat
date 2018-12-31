@@ -182,7 +182,7 @@ ul {
   width: 280px;
   height: auto;
   z-index: 20;
-  padding: 20px 20px 50px;
+  padding: 5px 20px 50px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   background-color: #FFF;
@@ -221,7 +221,7 @@ form {
   border: 1px solid #3D52B0;
   font-size: 16px;
 }
-.input_holder button, .get-random button {
+.input_holder button, .get-random button._btn {
   border-radius: 4px;
 }
 .form_inner {
@@ -271,7 +271,7 @@ form.sign-in-form input, form.sign-up-form input {
 }
 form.sign-in-form button, 
 form.sign-up-form button,
-.get-random button {
+.get-random button._btn {
   background-color: #3D52B0;
   color: #FFF;
   text-transform: uppercase;
@@ -326,8 +326,8 @@ form.sign-up-form button,
 }
 
 .place {
-  margin: 10px 0;
-  padding: 20px 5px;
+  margin: 0 0 10px;
+  padding: 10px 5px;
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
@@ -339,6 +339,23 @@ form.sign-up-form button,
 .place-address {
   font-size: 14px;
   padding: 5px;
+}
+.place-images-container {
+  padding: 5px 0;
+}
+.place-images-container .place-image {
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: rgba(61, 82, 176, 0.14);
+}
+
+.slick-next:before, .slick-prev:before, .slick-dots li.slick-active button:before {
+  color: #3D52B0;
+}
+.slick-dots {
+  bottom: -13px;
 }
 
 

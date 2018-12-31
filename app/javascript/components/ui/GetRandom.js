@@ -35,37 +35,40 @@ export default class GetRandom extends Component {
     }
     this.setState({
       places: places
-    }, () => this.getRandom())
+    }, () => this.getRandom(places))
   }
-  getRandom = () => {
-    const randomPlace = this.state.places[Math.floor(Math.random()*this.state.places.length-1)]
+  getRandom = (places) => {
+    const randomPlace = places[Math.floor(Math.random()*places.length-1)]
     setTimeout(() => {
-      const request = {
-        placeId: randomPlace.place_id,
-        fields: ['name', 
-                  'rating', 
-                  'formatted_phone_number', 
-                  'formatted_address',
-                  'geometry',
-                  'icon',
-                  'opening_hours',
-                  'photos',
-                  'price_level',
-                  'reviews',
-                  'url',
-                  'website'
-                ]
-      };
-      this.state.service.getDetails(request, (place, status) => {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-          console.log(place)
-          this.setState({
-            currentRandom: place,
-            seen: [...this.state.seen, place]
-          }, () => this.props.doneLoading())
-        }
-      })
-    }, 1000); // need to figure out why this happens
+      console.log(randomPlace)
+      if (randomPlace !== undefined && randomPlace.place_id !== undefined) {
+        const request = {
+          placeId: randomPlace.place_id,
+          fields: ['name', 
+                    'rating', 
+                    'formatted_phone_number', 
+                    'formatted_address',
+                    'geometry',
+                    'opening_hours',
+                    'photos',
+                    'price_level',
+                    'url',
+                    'website'
+                  ]
+        };
+        this.state.service.getDetails(request, (place, status) => {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            console.log(place)
+            this.setState({
+              currentRandom: place,
+              seen: [...this.state.seen, place]
+            }, () => this.props.doneLoading())
+          }
+        })
+      } else {
+        this.getRandom(places)
+      }
+    }, 500); // need to figure out why this happens
   }
   componentDidMount(){
     this.setUpSearch()
@@ -79,7 +82,7 @@ export default class GetRandom extends Component {
         <div className={`get-random ${_open ? "open" : ""}`}>
           {random && <Place place={random} />}
           <button
-            className="btn--ripple wh"
+            className="_btn btn--ripple wh"
             onClick={this.getNearby}
           >
             Get Random
