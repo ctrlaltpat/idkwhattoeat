@@ -7,8 +7,8 @@ export default class GetRandom extends Component {
     placesService: null,
     directionsService: null,
     search: 'food',
-    cuisine: '',
-    radius: 500,
+    cuisine: this.props.userSettings.cuisine,
+    radius: this.props.userSettings.radius,
     places: [],
     activeDirections: null,
     activeMarkers: null,
@@ -65,7 +65,11 @@ export default class GetRandom extends Component {
       };
       this.state.placesService.getDetails(request, (place, status) => {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
-          const currentRandom = {...place, id: randomPlace.place_id}
+          const currentRandom = {
+            ...place, 
+            id: randomPlace.place_id
+          }
+          this.props.addToHistory(currentRandom)
           this.setState({
             currentRandom: currentRandom,
             seen: [...this.state.seen, currentRandom]

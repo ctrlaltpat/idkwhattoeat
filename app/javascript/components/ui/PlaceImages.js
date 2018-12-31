@@ -17,7 +17,7 @@ class PlaceImages extends React.Component {
     )
     return (
       <Slider {...settings}>
-        {images.slice(0,7)}
+        { images.length && images.length >= 7 ? images.slice(0,7) : images }
       </Slider>
     );
   }

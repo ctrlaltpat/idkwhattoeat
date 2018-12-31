@@ -14,6 +14,11 @@ class App extends React.Component {
       lat: 43.6570321,
       lng: -79.6010311
     },
+    userSettings: {
+      cuisine: '',
+      radius: 500
+    },
+    userHistory: [],
     map: null,
     googleMaps: null,
     loading: true
@@ -65,6 +70,11 @@ class App extends React.Component {
       return Promise.resolve()
     }
   }
+  addToHistory = (seen) => {
+    this.setState({
+      userHistory: [...this.state.userHistory, seen]
+    })
+  }
   loadMap = () => {
     let googleMaps
     let map
@@ -113,7 +123,7 @@ class App extends React.Component {
     this.state.user && this.loadMap()
   }
   render () {
-    const { user, userLocation, map, googleMaps, loading } = this.state
+    const { user, userLocation, userSettings, userHistory, map, googleMaps, loading } = this.state
 
     return (
       <div className={`App ${user ? "userSignedIn" : '' }`}>
@@ -124,6 +134,9 @@ class App extends React.Component {
               map={map}
               user={user}
               userLocation={userLocation}
+              userSettings={userSettings}
+              userHistory={userHistory}
+              addToHistory={this.addToHistory}
               gMaps={googleMaps}
               isLoading={this.isLoading}
               doneLoading={this.doneLoading}
