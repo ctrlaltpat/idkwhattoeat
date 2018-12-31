@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
   end
   
   def secret
-    ENV['MY_SUPER_SECRET'] || "123456" # remove before deploy
+    ENV['MY_SUPER_SECRET']
   end
 end
