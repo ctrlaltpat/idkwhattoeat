@@ -182,7 +182,7 @@ ul {
   width: 280px;
   height: auto;
   z-index: 20;
-  padding: 5px 20px 50px;
+  padding: 5px 20px 40px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   background-color: #FFF;
@@ -284,7 +284,9 @@ form.sign-up-form button,
   transition: all 0.3 ease;
   cursor: pointer;
 }
-
+.get-random button._btn {
+  margin-bottom: 2px;
+}
 
 .close-menu {
   transform: scale(0);

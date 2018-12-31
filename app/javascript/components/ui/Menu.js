@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 
 import GetRandom from './GetRandom'
-// import gimme a choice .... need to change this name tho
-// should i still inlcude setting date and time??
-// import history
-// import settings
 
 class Menu extends Component {
   state={
@@ -52,7 +48,10 @@ class Menu extends Component {
         <div className={`menu ${isOpen ? "open" : ""} `}>
           <div className="close-menu btn--ripple wh" onClick={() => this.closeMenu()}>x</div>
           <ul className="options">
-            <li className="menu-item btn--ripple" onClick={()=> this.handleClick('random')}>Gimme a choice</li>
+            <li 
+              className="menu-item btn--ripple" 
+              onClick={()=> this.handleClick('random')}
+              >IDK What to eat!</li>
             <li className="menu-item btn--ripple">View History</li>
             <li className="menu-item btn--ripple">Settings</li>
             <li className="menu-item btn--ripple" onClick={signout}>Sign Out</li>

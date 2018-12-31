@@ -14,7 +14,9 @@ const Place = ({place}) => {
   }
   return (
     <div className="place">
-      <div className="place-name">{place.name}</div>
+      <div className="place-name">
+        <a target="_blank" href={place.website}>{place.name}</a>
+      </div>
       {/* <div className="rating">{place.rating}</div> */}
       <div className="rating-stars">
         <span style={starStyle}></span>
