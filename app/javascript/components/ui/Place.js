@@ -8,6 +8,21 @@ const computeStars = (rating) => {
   return starsWidth + 'px';
 }
 
+const getClosingTime = (hours) => {
+  if (hours && hours.periods.length === 7) {
+    let closed = hours.periods[new Date().getDay()].close
+    let _M = closed.hours > 13 ? "PM" : "AM"
+    let closingTime = _M === "AM" ? 
+            `${closed.hours}:${closed.time.slice(2)}` 
+            :
+            `${closed.hours-12}:${closed.time.slice(2)}`
+    
+    return (
+      `Closes at ${closingTime} ${_M}`
+    )
+  }
+}
+
 const Place = ({place}) => {
   const starStyle = {
     width: `${computeStars(place.rating)}`
@@ -27,6 +42,9 @@ const Place = ({place}) => {
       > {place.formatted_phone_number}</a>
       <div className="place-images-container">
         <PlaceImages images={place.photos}/>
+      </div>
+      <div className="closes-at">
+        {getClosingTime(place.opening_hours)}
       </div>
     </div>
   )

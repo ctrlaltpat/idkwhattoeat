@@ -343,7 +343,7 @@ form.sign-up-form button,
   padding: 5px;
 }
 .place-images-container {
-  padding: 5px 0;
+  padding: 5px 0 10px;
 }
 .place-images-container .place-image {
   height: 160px;
@@ -352,12 +352,15 @@ form.sign-up-form button,
   border-radius: 4px;
   background-color: rgba(61, 82, 176, 0.14);
 }
+.closes-at {
+  padding: 5px;
+}
 
 .slick-next:before, .slick-prev:before, .slick-dots li.slick-active button:before {
   color: #3D52B0;
 }
 .slick-dots {
-  bottom: -13px;
+  bottom: -15px;
 }
 
 

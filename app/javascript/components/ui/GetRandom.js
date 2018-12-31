@@ -43,37 +43,43 @@ export default class GetRandom extends Component {
     }, () => this.getRandom(places))
   }
   getRandom = (places) => {
+    // const unSeen = places.filter(place => {
+    //   return !this.state.seen.includes(this.state.seen.find(s=>s.id === place.place_id))
+    // })
+    // const randomPlace = unSeen[Math.floor(Math.random()*unSeen.length-1)]
     const randomPlace = places[Math.floor(Math.random()*places.length-1)]
-    setTimeout(() => {
-      console.log(randomPlace)
-      if (randomPlace !== undefined && randomPlace.place_id !== undefined) {
-        const request = {
-          placeId: randomPlace.place_id,
-          fields: ['name', 
-                    'rating', 
-                    'formatted_phone_number', 
-                    'formatted_address',
-                    'geometry',
-                    'opening_hours',
-                    'photos',
-                    'price_level',
-                    'url',
-                    'website'
-                  ]
-        };
-        this.state.placesService.getDetails(request, (place, status) => {
-          if (status == google.maps.places.PlacesServiceStatus.OK) {
-            console.log(place)
-            this.setState({
-              currentRandom: place,
-              seen: [...this.state.seen, place]
-            }, () => this.props.doneLoading())
-          }
-        })
-      } else {
-        this.getRandom(places)
-      }
-    }, 500); // need to figure out why this happens
+    if (randomPlace !== undefined && randomPlace.place_id !== undefined) {
+      const request = {
+        placeId: randomPlace.place_id,
+        fields: ['name', 
+                  'rating', 
+                  'formatted_phone_number', 
+                  'formatted_address',
+                  'geometry',
+                  'opening_hours',
+                  'photos',
+                  'price_level',
+                  'url',
+                  'website'
+                ]
+      };
+      this.state.placesService.getDetails(request, (place, status) => {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          const currentRandom = {...place, id: randomPlace.place_id}
+          this.setState({
+            currentRandom: currentRandom,
+            seen: [...this.state.seen, currentRandom]
+          }, () => this.props.doneLoading())
+        }
+      })
+    } else {
+      setTimeout(() => {
+        alert('Sorry, something went VERY WRONG...please try again :)')
+        this.props.doneLoading()
+      }, 2000);
+      // console.log("No Place ID...Q_Q... trying again..")
+      // this.getRandom(places)
+    }
   }
   getDirections = () => {
     const { map, gMaps, toggle } = this.props
