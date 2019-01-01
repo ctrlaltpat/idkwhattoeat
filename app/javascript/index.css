@@ -173,7 +173,9 @@ ul {
   transition: opacity 0.5s ease-out;
 }
 
-.get-random, .history_container {
+.get-random, 
+.history_container,
+.user_settings {
   position: absolute;
   bottom: 10%;
   left: 0;
@@ -190,7 +192,9 @@ ul {
   transform: scale(0);
   transition: 0.5s;
 }
-.get-random.open, .history_container.open {
+.get-random.open, 
+.history_container.open,
+.user_settings.open {
   transform: scale(1)
 }
 .history_container.open {

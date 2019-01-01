@@ -1,8 +1,4 @@
 class Api::V1::UsersController < ApplicationController
-  def index
-    @users = User.all
-    render json: @users
-  end
 
   def signin
     @user = User.find_by(username: params[:username])
@@ -13,7 +9,9 @@ class Api::V1::UsersController < ApplicationController
         username: @user.username,
         firstname: @user.firstname,
         lastname: @user.lastname,
-       email: @user.email
+        email: @user.email,
+        cuisine: @user.user_setting.cuisine,
+        radius: @user.user_setting.radius
       }
     else
       render json: {error: 'Username/password invalid.', log: @user.errors.full_messages}, status: 401
@@ -24,6 +22,7 @@ class Api::V1::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
       @user.save
+      @user.create_user_setting(cuisine:'', radius: 500)
       user = @user
       if user
         render json: {
@@ -31,7 +30,9 @@ class Api::V1::UsersController < ApplicationController
           username: user.username,
           firstname: user.firstname,
           lastname: user.lastname,
-          email: user.email
+          email: user.email,
+          cuisine: user.user_setting.cuisine,
+          radius: user.user_setting.radius
         }
       else
         render json: {error: 'wrong', log: @user.errors.full_messages}, status: 401
@@ -42,13 +43,19 @@ class Api::V1::UsersController < ApplicationController
   def validate
     @user = get_current_user
     if @user
-      render json: {username: @user.username, token: issue_token({id: @user.id})}
+      render json: {
+        id: @user.id,
+        token: issue_token({id: @user.id}),
+        username: @user.username,
+        firstname: @user.firstname,
+        lastname: @user.lastname,
+        email: @user.email,
+        cuisine: @user.user_setting.cuisine,
+        radius: @user.user_setting.radius
+      }
     else
       render json: {error: 'Username/password invalid.'}, status: 401
     end
-  end
-
-  def get_history
   end
 
   def user_params

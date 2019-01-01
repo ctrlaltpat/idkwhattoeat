@@ -1,5 +1,5 @@
 import React from 'react'
-import API from './api/RailsAuth'
+import API from './api/RailsAPI'
 
 import SignIn from './components/auth/SignIn'
 import Menu from './components/ui/Menu'
@@ -32,8 +32,12 @@ class App extends React.Component {
         username: user.username,
         displayName: user.firstname ? `${user.firstname} ${user.lastname}` : "",
         email: user.email
+      },
+      userSettings: {
+        cuisine: user.cuisine,
+        radius: user.radius
       }
-    }, this.loadMap())
+    }, () => this.loadMap())
   }
   signOut = () => {
     localStorage.removeItem('token')
@@ -70,6 +74,15 @@ class App extends React.Component {
       return Promise.resolve()
     }
   }
+  updateUserSettings = ({cuisine, radius}) => {
+    API.updateSettings({
+      cuisine, 
+      radius,
+      username: this.state.user.username
+    }).then(({cui, rad}) => this.setState({
+      cuisine: cui, radius: rad
+    }))
+  }
   addToHistory = (seen) => {
     this.setState({
       userHistory: [...this.state.userHistory, seen]
@@ -105,7 +118,7 @@ class App extends React.Component {
         this.setState({
           map: map,
           googleMaps: googleMaps
-        }, this.doneLoading)
+        }, () => this.doneLoading())
       })
     })
   }
@@ -120,7 +133,6 @@ class App extends React.Component {
           this.signIn(data)
         }
       })
-    this.state.user && this.loadMap()
   }
   render () {
     const { user, userLocation, userSettings, userHistory, map, googleMaps, loading } = this.state

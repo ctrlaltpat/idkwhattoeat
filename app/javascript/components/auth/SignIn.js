@@ -1,6 +1,6 @@
 import React from 'react'
 
-import API from '../../api/RailsAuth'
+import API from '../../api/RailsAPI'
 
 class SignIn extends React.Component {
   state = {
