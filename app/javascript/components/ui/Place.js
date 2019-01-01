@@ -27,6 +27,7 @@ const Place = ({place}) => {
   const starStyle = {
     width: `${computeStars(place.rating)}`
   }
+  const price = place.price_level && [...Array(place.price_level)].map(lvl => "£")
   return (
     <div className="place">
       <div className="place-name">
@@ -35,6 +36,9 @@ const Place = ({place}) => {
       {/* <div className="rating">{place.rating}</div> */}
       <div className="rating-stars">
         <span style={starStyle}></span>
+      </div>
+      <div className="price_level">
+        {price}
       </div>
       <div className="place-address">{place.formatted_address}</div>
       <a className="place-number" 
