@@ -2,8 +2,8 @@ import React from 'react'
 import Place from './Place'
 
 
-const History = ({history, _open, toggle}) => {
-  const seen = history.map((place, idx) => <Place key={`${place.id}~${idx}`} place={place}/>)
+const History = ({history, _open, toggle, changeCurrentPlace, getDirections}) => {
+  const seen = history.map((place, idx) => <Place key={`${place.id}~${idx}`} place={place} changeCurrentPlace={changeCurrentPlace} getDirections={getDirections}/>)
   return (
     <React.Fragment>
       <div className={`history_container ${_open ? "open" : ""}`}>

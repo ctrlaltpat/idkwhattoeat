@@ -24,6 +24,7 @@ class Api::V1::UsersController < ApplicationController
     if @user.valid?
       @user.save
       @user.create_user_setting(cuisine:'', radius: 500)
+      @user.user_places.none
       user = @user
       if user
         render json: {

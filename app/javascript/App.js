@@ -37,7 +37,7 @@ class App extends React.Component {
         cuisine: user.cuisine,
         radius: user.radius
       },
-      userHistory: user.history.map(h=>JSON.parse(h.placeObj))
+      userHistory: user.history ? user.history.map(h=>JSON.parse(h.placeObj)) : []
     }, () => this.loadMap())
   }
   signOut = () => {

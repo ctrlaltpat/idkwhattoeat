@@ -19,7 +19,7 @@ class Settings extends React.Component {
       <div className={`user_settings ${_open ? "open" : ""}`}>
         <div className="input_holder">
           <label htmlFor="cuisine">Cuisine:</label>
-          <select name="cuisine" id="cuisine" value={settings.cuisine} onChange={this.handleChange}>
+          <select name="cuisine" id="cuisine" value={this.state.cuisine} onChange={this.handleChange}>
             {settings.cuisine !== "" ? 
               <option value={settings.cuisine}>{allOptions.find(c=>varify(c)===settings.cuisine)}</option>
               : 
@@ -31,7 +31,7 @@ class Settings extends React.Component {
         </div>
         <div className="input_holder">
           <label htmlFor="radius">Search Area:</label>
-          <select name="radius" id="radius" value={settings.radius} onChange={this.handleChange}>
+          <select name="radius" id="radius" value={this.state.radius} onChange={this.handleChange}>
             {<option value={settings.radius}>{`${settings.radius}m`}</option>}
             {
               distances.filter(d=>d!==settings.radius).map((r,i)=><option key={i} value={r}>{`${r}m`}</option>)

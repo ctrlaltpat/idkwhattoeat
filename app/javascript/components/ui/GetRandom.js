@@ -1,25 +1,23 @@
 import React, { Component } from 'react'
-const pin = require('../../marker.png')
+
 import Place from './Place'
 
 export default class GetRandom extends Component {
   state = {
     placesService: null,
-    directionsService: null,
+    // directionsService: null,
     search: 'food',
     cuisine: this.props.userSettings.cuisine,
     radius: this.props.userSettings.radius,
     places: [],
-    activeDirections: null,
-    activeMarkers: null,
-    currentRandom: null,
+    currentRandom: this.props.currentPlace,
     seen: []
   }
   setUpServices = () => {
     const { map, gMaps } = this.props
     this.setState({
       placesService : new gMaps.places.PlacesService(map),
-      directionsService : new gMaps.DirectionsService
+      // directionsService : new gMaps.DirectionsService
     })
   }
   getNearby = () => {
@@ -69,6 +67,7 @@ export default class GetRandom extends Component {
             ...place, 
             id: randomPlace.place_id
           }
+          this.props.changeCurrentPlace(currentRandom)
           this.setState({
             currentRandom: currentRandom,
             seen: [...this.state.seen, currentRandom]
@@ -85,81 +84,7 @@ export default class GetRandom extends Component {
     }
   }
   getDirections = () => {
-    const { map, gMaps, toggle } = this.props
-    const { directionsService, activeDirections } = this.state
-    let markerArray = []
-    if (activeDirections) {
-      activeDirections.setMap(null)
-    }
-    const directionsDisplay = new gMaps.DirectionsRenderer({
-      map: map,
-      polylineOptions: { strokeColor: "#E87527" }
-    });
-    this.setState({activeDirections: directionsDisplay})
-    let stepDisplay = new gMaps.InfoWindow;
-
-    this.calculateAndDisplayRoute(directionsDisplay, directionsService, markerArray, stepDisplay, map);
-
-    toggle('random')
-  }
-  calculateAndDisplayRoute = (directionsDisplay, directionsService, markerArray, stepDisplay, map) => {
-    const { userLocation, gMaps, user, addToHistory } = this.props
-
-    addToHistory({place: JSON.stringify(this.state.currentRandom), username: user.username})
-    const userLoc = new gMaps.LatLng(
-      userLocation.lat, 
-      userLocation.lng
-    )
-    const placeLoc = new gMaps.LatLng(
-      this.state.currentRandom.geometry.location.lat(),
-      this.state.currentRandom.geometry.location.lng()
-    )
-    // First, remove any existing markers from the map.
-    this.state.activeMarkers && this.state.activeMarkers.forEach( marker => marker.setMap(null) )
-    this.setState({activeMarkers: null})
-    // Retrieve the start and end locations and create a DirectionsRequest using
-    // WALKING directions.
-    directionsService.route({
-      origin: userLoc,
-      destination: placeLoc,
-      travelMode: 'WALKING'
-    }, (response, status) => {
-      // Route the directions and pass the response to a function to create
-      // markers for each step.
-      if (status === 'OK') {
-        directionsDisplay.setDirections(response);
-        this.showSteps(response, markerArray, stepDisplay, map);
-      } else {
-        console.log('Directions request failed due to ' + status);
-      }
-    });
-  }
-  showSteps = (directionResult, markerArray, stepDisplay, map) => {
-    const { gMaps } = this.props
-    // For each step, place a marker, and add the text to the marker's infowindow.
-    // Also attach the marker to an array so we can keep track of it and remove it
-    // when calculating new routes.
-    let myRoute = directionResult.routes[0].legs[0];
-    for (let i = 0; i < myRoute.steps.length; i++) {
-      let marker = markerArray[i] = markerArray[i] || new gMaps.Marker({
-        icon: pin,
-        animation: google.maps.Animation.DROP
-      });
-      marker.setMap(map);
-      marker.setPosition(myRoute.steps[i].start_location);
-      this.attachInstructionText(
-          stepDisplay, marker, myRoute.steps[i].instructions, map);
-    }
-    this.setState({activeMarkers: markerArray})
-  }
-  attachInstructionText = (stepDisplay, marker, text, map) => {
-    const { gMaps } = this.props
-    gMaps.event.addListener(marker, 'click', () => {
-      // Open an info window when the marker is clicked on, containing the text
-      // of the step.
-      stepDisplay.setContent(text);
-      stepDisplay.open(map, marker);
-    });
+    this.props.getDirections()
   }
   componentDidMount(){
     this.setUpServices()

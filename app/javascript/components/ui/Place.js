@@ -23,7 +23,7 @@ const getClosingTime = (hours) => {
   }
 }
 
-const Place = ({place, showImages}) => {
+const Place = ({place, showImages, changeCurrentPlace, getDirections}) => {
   const starStyle = {
     width: `${computeStars(place.rating)}`
   }
@@ -60,7 +60,7 @@ const Place = ({place, showImages}) => {
             <div className="btn_container">
               <button
                 className="_btn btn--ripple wh"
-                onClick={() => console.log('not ready yet')}
+                onClick={() => {changeCurrentPlace(place); getDirections()}}
               >
                 Get Directions
               </button>
