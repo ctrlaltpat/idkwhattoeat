@@ -68,7 +68,7 @@ class Menu extends Component {
   }
   render() {
     const { isOpen, random, history, settings } = this.state;
-    const { map, gMaps, user, userLocation, userSettings, addToHistory, userHistory, signout } = this.props
+    const { map, gMaps, user, userLocation, userSettings, updateUserSettings, addToHistory, userHistory, signout } = this.props
     return (
       <React.Fragment>
         {/* <div className={`overlay ${ isOpen ? "open": ""}`}></div> */}
@@ -117,7 +117,8 @@ class Menu extends Component {
           userSettings
             &&
               <Settings 
-                settings={userSettings} 
+                settings={userSettings}
+                updateUserSettings={updateUserSettings} 
                 toggle={this.handleClick} 
                 _open={settings}/>
         }

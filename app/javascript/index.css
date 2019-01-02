@@ -205,11 +205,19 @@ ul {
   padding: 0 30px;
   overflow: scroll;
 }
-.history_container.open .close-menu {
+.history_container.open .close-menu  {
   left: auto;
   top: auto;
   right: 1px;
   bottom: 1px;
+}
+.user_settings.open .close-menu {
+  top: auto;
+  bottom: 2px;
+}
+.user_settings .input_holder label {display: inline-block;}
+.user_settings select{
+  float: right;
 }
 /* forms  */
 form {
@@ -240,7 +248,8 @@ form {
 }
 .input_holder button, 
 .get-random button._btn,
-.history_container button._btn  {
+.history_container button._btn,
+.user_settings button._btn  {
   border-radius: 4px;
 }
 .form_inner {
@@ -291,7 +300,8 @@ form.sign-in-form input, form.sign-up-form input {
 form.sign-in-form button, 
 form.sign-up-form button,
 .get-random button._btn,
-.history_container button._btn {
+.history_container button._btn,
+.user_settings button._btn  {
   background-color: #3D52B0;
   color: #FFF;
   text-transform: uppercase;

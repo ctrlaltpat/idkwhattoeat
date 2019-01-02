@@ -28,7 +28,7 @@ export default class GetRandom extends Component {
     const location = new gMaps.LatLng(userLocation.lat, userLocation.lng)
     this.state.placesService.nearbySearch({
       location: location,
-      keyword: this.state.search,
+      keyword: `${this.state.cuisine} ${this.state.search}`,
       openNow: true,
       radius: this.state.radius,
     }, this.getPlaces)
@@ -104,7 +104,7 @@ export default class GetRandom extends Component {
   }
   calculateAndDisplayRoute = (directionsDisplay, directionsService, markerArray, stepDisplay, map) => {
     const { userLocation, gMaps, user, addToHistory } = this.props
-    
+
     addToHistory({place: JSON.stringify(this.state.currentRandom), username: user.username})
     const userLoc = new gMaps.LatLng(
       userLocation.lat, 

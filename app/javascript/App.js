@@ -26,7 +26,6 @@ class App extends React.Component {
   signIn = user => {
     localStorage.setItem('token', user.token)
     this.isLoading()
-    console.log(user.history.map(h=>JSON.parse(h.placeObj)))
     this.setState({
       user: {
         id: user.id,
@@ -81,8 +80,8 @@ class App extends React.Component {
       cuisine, 
       radius,
       username: this.state.user.username
-    }).then(({cui, rad}) => this.setState({
-      cuisine: cui, radius: rad
+    }).then((settings) => this.setState({
+      userSettings: settings
     }))
   }
   addToHistory = ({place, username}) => {
@@ -150,6 +149,7 @@ class App extends React.Component {
               user={user}
               userLocation={userLocation}
               userSettings={userSettings}
+              updateUserSettings={this.updateUserSettings}
               userHistory={userHistory}
               addToHistory={this.addToHistory}
               gMaps={googleMaps}
