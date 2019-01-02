@@ -111,6 +111,7 @@ class Menu extends Component {
       userLocation.lng
     )
     const { geometry } = this.state.currentPlace
+    // laziness
     const placeLat = typeof geometry.location.lat === "number" ? geometry.location.lat : geometry.location.lat()
     const placeLng = typeof geometry.location.lng === "number" ? geometry.location.lng : geometry.location.lng()
     const placeLoc = new gMaps.LatLng(placeLat, placeLng)
