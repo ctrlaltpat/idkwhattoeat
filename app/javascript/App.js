@@ -144,6 +144,7 @@ class App extends React.Component {
         { user ? (
           <React.Fragment>
             <div id="map"></div>
+            {/* <div className="top_bar"></div> */}
             <Menu 
               map={map}
               user={user}

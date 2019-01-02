@@ -74,6 +74,19 @@ ul {
   min-height: 100vh;
 }
 
+.top_bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  min-height: 40px;
+  width: 100%;
+  padding: 10px;
+  background-color: #004e92;
+  background: -webkit-linear-gradient(top,#004e92,#1b2687);
+  background: -o-linear-gradient(top,#004e92,#1b2687);
+  background: linear-gradient(180deg,#004e92,#1b2687);
+}
 
 /* menus */
 .menu {
