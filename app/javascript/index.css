@@ -118,13 +118,19 @@ ul {
   transition: 0.2s;
 }
 .menu .toggle:before {
-  content: '\f142';
+  content: url('/packs/marker-303be58515cfddfc205f2fdf1a5da1dd.png');
+  top: 10px;
   position: absolute;
   width: 100%;
   height: 100%;
   text-align: center;
   line-height: 50px;
   transition: 0.2s;
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
 }
 .menu .centerSelf {
   position: absolute;
