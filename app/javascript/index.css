@@ -238,7 +238,9 @@ form {
   border: 1px solid #3D52B0;
   font-size: 16px;
 }
-.input_holder button, .get-random button._btn {
+.input_holder button, 
+.get-random button._btn,
+.history_container button._btn  {
   border-radius: 4px;
 }
 .form_inner {
@@ -288,7 +290,8 @@ form.sign-in-form input, form.sign-up-form input {
 }
 form.sign-in-form button, 
 form.sign-up-form button,
-.get-random button._btn {
+.get-random button._btn,
+.history_container button._btn {
   background-color: #3D52B0;
   color: #FFF;
   text-transform: uppercase;

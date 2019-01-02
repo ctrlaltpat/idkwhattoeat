@@ -11,7 +11,8 @@ class Api::V1::UsersController < ApplicationController
         lastname: @user.lastname,
         email: @user.email,
         cuisine: @user.user_setting.cuisine,
-        radius: @user.user_setting.radius
+        radius: @user.user_setting.radius,
+        history: @user.user_places
       }
     else
       render json: {error: 'Username/password invalid.', log: @user.errors.full_messages}, status: 401
@@ -51,7 +52,8 @@ class Api::V1::UsersController < ApplicationController
         lastname: @user.lastname,
         email: @user.email,
         cuisine: @user.user_setting.cuisine,
-        radius: @user.user_setting.radius
+        radius: @user.user_setting.radius,
+        history: @user.user_places.order('id DESC')
       }
     else
       render json: {error: 'Username/password invalid.'}, status: 401

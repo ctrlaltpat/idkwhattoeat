@@ -33,6 +33,14 @@ class API {
       body: JSON.stringify(settings)
     }).then(resp => resp.json())
   }
+  static addToHistory (placeObj) {
+    const csrfToken = document.querySelector('[name="csrf-token"]').content
+    return fetch('/api/v1/addToHistory', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken},
+      body: JSON.stringify({user_place: placeObj})
+    }).then(resp => resp.json())
+  }
 }
 
 export default API

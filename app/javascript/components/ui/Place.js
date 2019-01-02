@@ -23,7 +23,7 @@ const getClosingTime = (hours) => {
   }
 }
 
-const Place = ({place}) => {
+const Place = ({place, showImages}) => {
   const starStyle = {
     width: `${computeStars(place.rating)}`
   }
@@ -44,12 +44,28 @@ const Place = ({place}) => {
       <a className="place-number" 
         href={`tel:${place.formatted_phone_number}`}
       > {place.formatted_phone_number}</a>
-      <div className="place-images-container">
-        <PlaceImages images={place.photos}/>
-      </div>
+      {
+        showImages 
+          &&
+          <div className="place-images-container">
+            <PlaceImages images={place.photos}/>
+          </div>
+      }
       <div className="closes-at">
         {getClosingTime(place.opening_hours)}
       </div>
+      {
+        !showImages
+          &&
+            <div className="btn_container">
+              <button
+                className="_btn btn--ripple wh"
+                onClick={() => console.log('not ready yet')}
+              >
+                Get Directions
+              </button>
+            </div>
+      }
     </div>
   )
 }

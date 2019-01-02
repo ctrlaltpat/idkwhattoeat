@@ -69,7 +69,6 @@ export default class GetRandom extends Component {
             ...place, 
             id: randomPlace.place_id
           }
-          this.props.addToHistory(currentRandom)
           this.setState({
             currentRandom: currentRandom,
             seen: [...this.state.seen, currentRandom]
@@ -104,7 +103,9 @@ export default class GetRandom extends Component {
     toggle('random')
   }
   calculateAndDisplayRoute = (directionsDisplay, directionsService, markerArray, stepDisplay, map) => {
-    const { userLocation, gMaps } = this.props
+    const { userLocation, gMaps, user, addToHistory } = this.props
+    
+    addToHistory({place: JSON.stringify(this.state.currentRandom), username: user.username})
     const userLoc = new gMaps.LatLng(
       userLocation.lat, 
       userLocation.lng
@@ -164,13 +165,13 @@ export default class GetRandom extends Component {
     this.setUpServices()
   }
   render() {
-    const { _open, toggle } = this.props
+    const { _open, toggle, user } = this.props
     const random = this.state.currentRandom
     return (
       <React.Fragment>
         <div className={`overlay ${ _open ? "open": ""}`}></div>
         <div className={`get-random ${_open ? "open" : ""}`}>
-          {random && <Place place={random} />}
+          {random && <Place place={random} username={user.username} showImages={true} />}
           <button
             className="_btn btn--ripple wh"
             onClick={this.getNearby}

@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_01_184729) do
+ActiveRecord::Schema.define(version: 2019_01_02_090239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "user_places", force: :cascade do |t|
+    t.string "placeObj"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "user_settings", force: :cascade do |t|
     t.string "cuisine"

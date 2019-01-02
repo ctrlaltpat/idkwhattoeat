@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
       patch 'updateSettings', to: 'user_settings#update'
       
-      # patch 'updateHistory', to: 'user_history#add'
+      post 'addToHistory', to: 'user_places#add'
     end
   end
 
