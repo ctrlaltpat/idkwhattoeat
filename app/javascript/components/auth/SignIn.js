@@ -65,7 +65,7 @@ class SignIn extends React.Component {
         {
           this.state.signInForm ? 
           <form onSubmit={handleSubmit} className="sign-in-form">
-            <h1>Patrick's crappy app</h1>
+            <h1><img src="idkwhattoeat_logo.png" alt="IDKWhatToEat"/></h1>
             <div className="input_holder">
               {/* <label htmlFor="username">Username:</label> */}
               <input type="text" id="username" name="username" placeholder="Username*" onChange={handleChange} value={username}/>
@@ -81,7 +81,7 @@ class SignIn extends React.Component {
           </form>
           :
           <form onSubmit={handleSubmit} className="sign-up-form">
-            <h1>Patrick's crappy app</h1>
+            <h1><img src="idkwhattoeat_logo.png" alt="IDKWhatToEat"/></h1>
             <div className="input_holder">
               <input type="text" id="username" name="username" placeholder="Username*" onChange={handleChange} value={username}/>
             </div>
