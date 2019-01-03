@@ -4,6 +4,9 @@ import API from './api/RailsAPI'
 import SignIn from './components/auth/SignIn'
 import Menu from './components/ui/Menu'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 import { load_google_maps, styles } from './api/GoogleMaps'
 import Loading from './components/ui/Loading';
 
@@ -126,6 +129,10 @@ class App extends React.Component {
   }
   isLoading = () => this.setState({loading: true})
   doneLoading = () => this.setState({loading: false})
+  notify = (text) => toast(text,{
+    className: 'notify-text',
+    bodyClassName: 'notify-text'
+  });
   componentDidMount(){
     API.validate()
       .then(data => {
@@ -163,9 +170,11 @@ class App extends React.Component {
             signin={this.signIn}
             isLoading={this.isLoading}
             doneLoading={this.doneLoading}
+            notify={this.notify}
           />
         )}
         <Loading show={loading}/>
+        <ToastContainer />
       </div>
     )
   }

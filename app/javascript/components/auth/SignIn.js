@@ -18,13 +18,13 @@ class SignIn extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { signin } = this.props
+    const { signin, notify } = this.props
     const { user } = this.state
     this.state.signInForm ? 
       API.signin({username: user.username, password: user.password})
         .then(data => {
           if (data.error) {
-            console.log(data.error)
+            notify(data.error)
           } else {
             signin(data)
           }
@@ -33,7 +33,7 @@ class SignIn extends React.Component {
       API.signup({user: user})
         .then(data => {
           if (data.error) {
-            alert(data.error)
+            notify(data.error)
           } else {
             signin(data)
           }

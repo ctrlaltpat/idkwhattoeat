@@ -549,3 +549,7 @@ form.sign-up-form button,
   opacity: 1;
   transform: scale(1);
 }
+
+.notify-text {
+  color: #3D52B0;
+}
