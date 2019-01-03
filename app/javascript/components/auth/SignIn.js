@@ -17,7 +17,7 @@ class SignIn extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { signin } = this.props
-    const user = this.state.user
+    const { user } = this.state
     this.state.signInForm ? 
       API.signin({username: user.username, password: user.password})
         .then(data => {

@@ -15,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
         history: @user.user_places
       }
     else
-      render json: {error: 'Username/password invalid.', log: @user.errors.full_messages}, status: 401
+      render json: {error: 'Username/password invalid.'}, status: 401
     end
   end
 
@@ -37,7 +37,7 @@ class Api::V1::UsersController < ApplicationController
           radius: user.user_setting.radius
         }
       else
-        render json: {error: 'wrong', log: @user.errors.full_messages}, status: 401
+        render json: {error: 'Invalid input.'}, status: 401
       end
     end
   end
