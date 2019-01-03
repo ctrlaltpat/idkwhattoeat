@@ -22,7 +22,7 @@ class SignIn extends React.Component {
       API.signin({username: user.username, password: user.password})
         .then(data => {
           if (data.error) {
-            console.log(data.log)
+            console.log(data.error)
           } else {
             signin(data)
           }
