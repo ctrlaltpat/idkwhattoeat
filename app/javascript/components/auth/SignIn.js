@@ -36,6 +36,7 @@ class SignIn extends React.Component {
             notify(data.error)
           } else {
             signin(data)
+            notify("Hiiiii! :) Use the button below!")
           }
         })
   }

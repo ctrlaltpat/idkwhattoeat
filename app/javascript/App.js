@@ -85,7 +85,7 @@ class App extends React.Component {
       username: this.state.user.username
     }).then((settings) => this.setState({
       userSettings: settings
-    }))
+    }, () => this.notify("Settings Updated!")))
   }
   addToHistory = ({place, username}) => {
     API.addToHistory({place, username})
@@ -140,6 +140,7 @@ class App extends React.Component {
           this.signOut()
         } else {
           this.signIn(data)
+          this.notify("Welcome back! :)")
         }
       })
   }
