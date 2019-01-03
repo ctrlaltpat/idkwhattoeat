@@ -39,6 +39,8 @@ class Api::V1::UsersController < ApplicationController
       else
         render json: {error: 'Invalid input.'}, status: 401
       end
+    else
+      render json: {error: 'Invalid input.'}, status: 401
     end
   end
   
