@@ -7,8 +7,8 @@ export default class GetRandom extends Component {
     placesService: null,
     // directionsService: null,
     search: 'food',
-    cuisine: this.props.userSettings.cuisine,
-    radius: this.props.userSettings.radius,
+    // cuisine: this.props.userSettings.cuisine,
+    // radius: this.props.userSettings.radius,
     places: [],
     currentRandom: this.props.currentPlace,
     seen: []
@@ -26,9 +26,9 @@ export default class GetRandom extends Component {
     const location = new gMaps.LatLng(userLocation.lat, userLocation.lng)
     this.state.placesService.nearbySearch({
       location: location,
-      keyword: `${this.state.cuisine} ${this.state.search}`,
+      keyword: `${this.props.userSettings.cuisine} ${this.state.search}`,
       openNow: true,
-      radius: this.state.radius,
+      radius: this.props.userSettings.radius,
     }, this.getPlaces)
   }
   getPlaces = (results, status) => {
