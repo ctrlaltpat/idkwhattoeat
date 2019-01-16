@@ -9,6 +9,8 @@ This is a very tiny part of what was a very ambitious idea for my final project 
 ## Demo
 
 [IDKWhatToEat Demo](https://youtu.be/-WxkpLZMivg)
+
+
 [IDKWhatToEat Demo - Mobile](https://youtu.be/eu4odDxmftM)
 
 
@@ -16,12 +18,18 @@ This is a very tiny part of what was a very ambitious idea for my final project 
 
 ## Made with:
 
-React, 
-Ruby on Rails, 
-Google Maps JavaScript API, 
-styled-components, 
-react-slick, 
-react-toastify, 
+React
+
+Ruby on Rails
+
+Google Maps JavaScript API
+
+styled-components
+
+react-slick
+
+react-toastify
+
 Patrick's fingers and mind
 
 ## Contributing
