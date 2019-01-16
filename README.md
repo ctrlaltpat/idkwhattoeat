@@ -8,19 +8,20 @@ This is a very tiny part of what was a very ambitious idea for my final project 
 
 ## Demo
 
-[![Everything Is AWESOME](https://img.youtube.com/vi/StTqXEQ2l-Y/0.jpg)](https://www.youtube.com/watch?v=StTqXEQ2l-Y "Everything Is AWESOME")
+[IDKWhatToEat Demo](https://youtu.be/-WxkpLZMivg)
+[IDKWhatToEat Demo - Mobile](https://youtu.be/eu4odDxmftM)
 
 
 
 
 ## Made with:
 
-react
-ruby on rails
-google maps api
-styled-components
-react-slick
-react-toastify
+React, 
+Ruby on Rails, 
+Google Maps JavaScript API, 
+styled-components, 
+react-slick, 
+react-toastify, 
 Patrick's fingers and mind
 
 ## Contributing
